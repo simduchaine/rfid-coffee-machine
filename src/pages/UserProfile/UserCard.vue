@@ -6,26 +6,15 @@
       alt="..."
     />
     <div class="author">
-      <a href="#">
-        <avatar
-          class="avatar border-gray"
-          :size="124"
-          :customStyle="avatarStyle"
-          :username="username"
-        ></avatar>
+      <avatar
+        class="avatar border-gray"
+        :size="124"
+        :customStyle="avatarStyle"
+        :username="username"
+      ></avatar>
 
-        <h4 class="title">
-          {{ username }}
-          <br />
-          <small>michael24</small>
-        </h4>
-      </a>
+      <h4 class="title">Hello {{ username }}</h4>
     </div>
-    <p class="description text-center">
-      "Lamborghini Mercy
-      <br />Your chick she so thirsty
-      <br />I'm in that two seat Lambo"
-    </p>
   </card>
 </template>
 <script>
@@ -60,6 +49,12 @@ export default {
       username: ""
     };
   },
+  created() {
+    let user = auth.currentUser;
+    if (user != null) {
+      this.username = user.displayName;
+    }
+  },
   methods: {
     getClasses(index) {
       var remainder = index % 3;
@@ -70,15 +65,6 @@ export default {
       } else {
         return "col-md-3";
       }
-    },
-    getUsername() {
-      let user = auth.currentUser;
-      if (user != null) {
-        this.username = user.displayName;
-      }
-    },
-    created() {
-      this.getUsername;
     }
   }
 };

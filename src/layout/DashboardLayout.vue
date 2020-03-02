@@ -10,10 +10,7 @@
         <i class="nc-icon nc-single-02"></i>
         <p>Employees</p>
       </sidebar-link>
-      <sidebar-link to="/admin/typography">
-        <i class="nc-icon nc-paper-2"></i>
-        <p>Typography</p>
-      </sidebar-link>
+
       <sidebar-link to="/admin/icons">
         <i class="nc-icon nc-atom"></i>
         <p>Icons</p>

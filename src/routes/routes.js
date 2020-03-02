@@ -8,7 +8,6 @@ import ResetPassword from "../pages/Authentification/ResetPassword.vue";
 // Admin pages
 import Overview from "src/pages/Overview.vue";
 import UserProfile from "src/pages/UserProfile/UserProfile.vue";
-import Typography from "src/pages/Typography.vue";
 import Icons from "src/pages/Icons.vue";
 import AddEmployees from "src/pages/Employees/AddEmployees.vue";
 import Employees from "src/pages/Employees/Employees.vue";
@@ -53,11 +52,6 @@ const routes = [
         path: "user",
         name: "User",
         component: UserProfile
-      },
-      {
-        path: "typography",
-        name: "Typography",
-        component: Typography
       },
       {
         path: "icons",

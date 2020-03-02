@@ -17,13 +17,12 @@
         <div class="col-xl-3 col-md-6">
           <stats-card>
             <div slot="header" class="icon-success">
-              <i class="nc-icon nc-light-3 text-success"></i>
+              <i class="nc-icon nc-money-coins text-success"></i>
             </div>
             <div slot="content">
-              <p class="card-category">Revenue</p>
-              <h4 class="card-title">$1,345</h4>
+              <p class="card-category">Total Funds</p>
+              <h4 class="card-title">{{ totalFunds }}$</h4>
             </div>
-            <div slot="footer"><i class="fa fa-calendar-o"></i>Last day</div>
           </stats-card>
         </div>
 
@@ -36,7 +35,9 @@
               <p class="card-category">Errors</p>
               <h4 class="card-title">23</h4>
             </div>
-            <div slot="footer"><i class="fa fa-clock-o"></i>Last day</div>
+            <div slot="footer">
+              <i class="fa fa-clock-o"></i>Last day
+            </div>
           </stats-card>
         </div>
 
@@ -49,16 +50,15 @@
               <p class="card-category">Followers</p>
               <h4 class="card-title">+45</h4>
             </div>
-            <div slot="footer"><i class="fa fa-refresh"></i>Updated now</div>
+            <div slot="footer">
+              <i class="fa fa-refresh"></i>Updated now
+            </div>
           </stats-card>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
-          <card
-            class="strpied-tabled-with-hover"
-            body-classes="table-full-width table-responsive"
-          >
+          <card class="strpied-tabled-with-hover" body-classes="table-full-width table-responsive">
             <template slot="header">
               <h4 class="card-title">Recent Employees</h4>
             </template>
@@ -71,8 +71,7 @@
               class="btn btn-info btn-fill"
               style="margin-left:10px;margin-bottom:15px;"
               :to="{ path: '/admin/employees' }"
-              >View all</router-link
-            >
+            >View all</router-link>
           </card>
         </div>
       </div>
@@ -269,6 +268,7 @@ export default {
         data: []
       },
       rfidList: [],
+      fundsArray: [],
       employeesCount: null
     };
   },
@@ -276,6 +276,7 @@ export default {
     //Get 5 most recent employees
     database
       .ref("employees")
+      .orderByChild("funds")
       .limitToFirst(5)
       .on("child_added", data => {
         this.table1.data.push(data.val());
@@ -284,9 +285,15 @@ export default {
     //Get RFID list
     database.ref("employees").on("child_added", data => {
       this.rfidList.push(data.val().rfid);
+      this.fundsArray.push(parseFloat(data.val().funds));
       //Count employees
       this.employeesCount = this.rfidList.length;
     });
+  },
+  computed: {
+    totalFunds() {
+      return this.fundsArray.reduce((a, b) => a + b, 0);
+    }
   }
 };
 </script>

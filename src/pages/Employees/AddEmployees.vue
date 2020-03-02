@@ -133,6 +133,7 @@ export default {
       this.user.lastName = "";
       this.user.rfid = "";
       this.user.department = "";
+      this.user.funds = 20;
     }
   }
 };
