@@ -1,7 +1,13 @@
 <template>
   <div class="content">
     <div class="container-fluid">
-      <input type="number" name="rfid-scan" v-focus v-model="user.rfid" hidden />
+      <input
+        type="number"
+        name="rfid-scan"
+        v-focus
+        v-model="user.rfid"
+        style="width: 0; overflow: hidden; opacity:0; filter:alpha(opacity=0);"
+      />
 
       <router-link
         class="btn btn-info btn-fill"
