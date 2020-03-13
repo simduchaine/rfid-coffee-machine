@@ -107,7 +107,7 @@ export default {
         lastName: "",
         rfid: "",
         department: "",
-        funds: ""
+        funds: null
       },
       employeeUpdated: false
     };
@@ -122,7 +122,7 @@ export default {
         this.user.lastName = snapshot.val().lastName;
         this.user.rfid = snapshot.val().rfid;
         this.user.department = snapshot.val().department;
-        this.user.funds = snapshot.val().funds;
+        this.user.funds = parseFloat(snapshot.val().funds);
       });
   },
   methods: {
@@ -134,7 +134,7 @@ export default {
         name: this.user.firstName + " " + this.user.lastName,
         email: this.user.email,
         department: this.user.department,
-        funds: this.user.funds
+        funds: parseFloat(this.user.funds)
       });
       this.employeeUpdated = true;
     },

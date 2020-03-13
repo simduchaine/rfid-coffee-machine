@@ -11,17 +11,17 @@
         <p>Employees</p>
       </sidebar-link>
 
-      <sidebar-link to="/admin/icons">
+      <!-- <sidebar-link to="/admin/icons">
         <i class="nc-icon nc-atom"></i>
         <p>Icons</p>
-      </sidebar-link>
+      </sidebar-link>-->
 
-      <template slot="bottom-links">
+      <!-- <template slot="bottom-links">
         <sidebar-link class="active" to="/admin/notifications">
           <i class="nc-icon nc-bell-55"></i>
           <p>Notifications</p>
         </sidebar-link>
-      </template>
+      </template>-->
     </side-bar>
     <div class="main-panel">
       <top-navbar></top-navbar>

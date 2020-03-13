@@ -17,7 +17,7 @@
         <div class="col-xl-3 col-md-6">
           <stats-card>
             <div slot="header" class="icon-success">
-              <i class="nc-icon nc-money-coins text-success"></i>
+              <i class="nc-icon nc-money-coins text-primary"></i>
             </div>
             <div slot="content">
               <p class="card-category">Total Funds</p>
@@ -29,14 +29,11 @@
         <div class="col-xl-3 col-md-6">
           <stats-card>
             <div slot="header" class="icon-danger">
-              <i class="nc-icon nc-vector text-danger"></i>
+              <i class="nc-icon nc-stre-down text-danger"></i>
             </div>
             <div slot="content">
-              <p class="card-category">Errors</p>
-              <h4 class="card-title">23</h4>
-            </div>
-            <div slot="footer">
-              <i class="fa fa-clock-o"></i>Last day
+              <p class="card-category">Least Funds</p>
+              <h4 class="card-title">{{ leastCash.name }}</h4>
             </div>
           </stats-card>
         </div>
@@ -44,14 +41,11 @@
         <div class="col-xl-3 col-md-6">
           <stats-card>
             <div slot="header" class="icon-info">
-              <i class="nc-icon nc-favourite-28 text-primary"></i>
+              <i class="nc-icon nc-stre-up text-success"></i>
             </div>
             <div slot="content">
-              <p class="card-category">Followers</p>
-              <h4 class="card-title">+45</h4>
-            </div>
-            <div slot="footer">
-              <i class="fa fa-refresh"></i>Updated now
+              <p class="card-category">Most Funds</p>
+              <h4 class="card-title">{{ mostCash.name }}</h4>
             </div>
           </stats-card>
         </div>
@@ -60,7 +54,7 @@
         <div class="col-12">
           <card class="strpied-tabled-with-hover" body-classes="table-full-width table-responsive">
             <template slot="header">
-              <h4 class="card-title">Recent Employees</h4>
+              <h4 class="card-title">Low Funds</h4>
             </template>
             <l-table
               class="table-hover table-striped"
@@ -78,70 +72,14 @@
       <div class="row">
         <div class="col-md-8">
           <chart-card
-            :chart-data="lineChart.data"
-            :chart-options="lineChart.options"
-            :responsive-options="lineChart.responsiveOptions"
-          >
-            <template slot="header">
-              <h4 class="card-title">Users Behavior</h4>
-              <p class="card-category">24 Hours performance</p>
-            </template>
-            <template slot="footer">
-              <div class="legend">
-                <i class="fa fa-circle text-info"></i> Open
-                <i class="fa fa-circle text-danger"></i> Click
-                <i class="fa fa-circle text-warning"></i> Click Second Time
-              </div>
-              <hr />
-              <div class="stats">
-                <i class="fa fa-history"></i> Updated 3 minutes ago
-              </div>
-            </template>
-          </chart-card>
-        </div>
-
-        <div class="col-md-4">
-          <chart-card :chart-data="pieChart.data" chart-type="Pie">
-            <template slot="header">
-              <h4 class="card-title">Email Statistics</h4>
-              <p class="card-category">Last Campaign Performance</p>
-            </template>
-            <template slot="footer">
-              <div class="legend">
-                <i class="fa fa-circle text-info"></i> Open
-                <i class="fa fa-circle text-danger"></i> Bounce
-                <i class="fa fa-circle text-warning"></i> Unsubscribe
-              </div>
-              <hr />
-              <div class="stats">
-                <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-              </div>
-            </template>
-          </chart-card>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <chart-card
             :chart-data="barChart.data"
             :chart-options="barChart.options"
             :chart-responsive-options="barChart.responsiveOptions"
             chart-type="Bar"
           >
             <template slot="header">
-              <h4 class="card-title">2014 Sales</h4>
-              <p class="card-category">All products including Taxes</p>
-            </template>
-            <template slot="footer">
-              <div class="legend">
-                <i class="fa fa-circle text-info"></i> Tesla Model S
-                <i class="fa fa-circle text-danger"></i> BMW 5 Series
-              </div>
-              <hr />
-              <div class="stats">
-                <i class="fa fa-check"></i> Data information certified
-              </div>
+              <h4 class="card-title">Employees Funds</h4>
+              <p class="card-category">All employees versus their total funds</p>
             </template>
           </chart-card>
         </div>
@@ -168,79 +106,10 @@ export default {
   },
   data() {
     return {
-      pieChart: {
-        data: {
-          labels: ["40%", "20%", "40%"],
-          series: [40, 20, 40]
-        }
-      },
-      lineChart: {
-        data: {
-          labels: [
-            "9:00AM",
-            "12:00AM",
-            "3:00PM",
-            "6:00PM",
-            "9:00PM",
-            "12:00PM",
-            "3:00AM",
-            "6:00AM"
-          ],
-          series: [
-            [287, 385, 490, 492, 554, 586, 698, 695],
-            [67, 152, 143, 240, 287, 335, 435, 437],
-            [23, 113, 67, 108, 190, 239, 307, 308]
-          ]
-        },
-        options: {
-          low: 0,
-          high: 800,
-          showArea: false,
-          height: "245px",
-          axisX: {
-            showGrid: false
-          },
-          lineSmooth: true,
-          showLine: true,
-          showPoint: true,
-          fullWidth: true,
-          chartPadding: {
-            right: 50
-          }
-        },
-        responsiveOptions: [
-          [
-            "screen and (max-width: 640px)",
-            {
-              axisX: {
-                labelInterpolationFnc(value) {
-                  return value[0];
-                }
-              }
-            }
-          ]
-        ]
-      },
       barChart: {
         data: {
-          labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "Mai",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec"
-          ],
-          series: [
-            [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
-            [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
-          ]
+          labels: [],
+          series: [[], []]
         },
         options: {
           seriesBarDistance: 10,
@@ -269,11 +138,20 @@ export default {
       },
       rfidList: [],
       fundsArray: [],
-      employeesCount: null
+      employeesArray: [],
+      employeesCount: null,
+      leastCash: {},
+      mostCash: {}
     };
   },
   created() {
-    //Get 5 most recent employees
+    //Create a bar chart
+    database.ref("employees").on("child_added", data => {
+      this.barChart.data.labels.push(data.val().name);
+      this.barChart.data.series[0].push(data.val().funds);
+    });
+
+    //Get 5 employees with less funds
     database
       .ref("employees")
       .orderByChild("funds")
@@ -289,6 +167,24 @@ export default {
       //Count employees
       this.employeesCount = this.rfidList.length;
     });
+
+    //Get Employee profile with least cash
+    database
+      .ref("employees")
+      .orderByChild("funds")
+      .limitToFirst(1)
+      .on("child_added", data => {
+        this.leastCash = data.val();
+      });
+
+    //Get Employee profile with most cash
+    database
+      .ref("employees")
+      .orderByChild("funds")
+      .limitToLast(1)
+      .on("child_added", data => {
+        this.mostCash = data.val();
+      });
   },
   computed: {
     totalFunds() {

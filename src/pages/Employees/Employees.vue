@@ -7,12 +7,8 @@
             class="btn btn-info btn-fill"
             style="margin-left:10px;margin-bottom:15px;"
             :to="{ path: '/admin/employees/add' }"
-            >Add Employee</router-link
-          >
-          <card
-            class="strpied-tabled-with-hover"
-            body-classes="table-full-width table-responsive"
-          >
+          >Add Employee</router-link>
+          <card class="strpied-tabled-with-hover" body-classes="table-full-width table-responsive">
             <template slot="header">
               <h4 class="card-title">Employees</h4>
             </template>
@@ -48,9 +44,12 @@ export default {
     };
   },
   created() {
-    database.ref("employees").on("child_added", data => {
-      this.table.data.push(data.val());
-    });
+    database
+      .ref("employees")
+      .orderByChild("funds")
+      .on("child_added", data => {
+        this.table.data.push(data.val());
+      });
   }
 };
 </script>
